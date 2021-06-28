@@ -1,0 +1,13 @@
+div {
+    border:5px solid #764abc;
+    margin : 10px;
+    color : #764abc;
+    padding : 10px;
+}
+
+input {
+    margin : 10px;
+    padding : 5px;
+    text-align: center;
+    font-size : 20px
+}

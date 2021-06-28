@@ -1,0 +1,17 @@
+{
+    "workbench.colorCustomizations": {
+        "titleBar.activeBackground": "#F54133",
+        "titleBar.inactiveBackground": "#F54133",
+        "titleBar.activeForeground": "#FFFFFF"
+    },
+    "terminal.integrated.profiles.windows": {
+        "cmder": {
+            "path": "C:\\WINDOWS\\System32\\cmd.exe",
+            "args": [
+                "/K",
+                "C:\\cmder\\vendor\\bin\\vscode_init.cmd"
+            ]
+        }
+    },
+    "terminal.  integrated.defaultProfile.windows": "cmder"
+}
