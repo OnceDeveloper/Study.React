@@ -1,15 +1,14 @@
-import React, { useCallback } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import Counter from "../components/counter";
+import { useSelector, useDispatch, shallowEqual } from "react-redux";
+import Counter from "../../components/counter/counter";
 import {
   decrement,
   increment,
   reset,
   inputIncrement,
-} from "../modules/counter";
+} from "../../modules/counter";
 
 const CounterContainer = () => {
-  const counter = useSelector((state) => state.counter.number);
+  const counter = useSelector((state) => state.counter.number, shallowEqual); // React.memo와 같이 shallow compare로 동작
 
   const dispatch = useDispatch();
   const onIncrease = () => dispatch(increment());

@@ -9,7 +9,7 @@ import reportWebVitals from "./reportWebVitals";
 import rootReducer from "./modules";
 
 const store = createStore(rootReducer, composeWithDevTools());
-// console.log(store.getState()); => {counter : 0}
+// console.log(store.getState()); =>  {counter :{number : 0},  todos :{input : "", todos:[]} }
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>

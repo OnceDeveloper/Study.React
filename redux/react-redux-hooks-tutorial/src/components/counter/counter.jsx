@@ -12,7 +12,8 @@ const Counter = ({
 
   return (
     <div>
-      <h1>{number}</h1>
+      <h1>Counter</h1>
+      <h2>{number}</h2>
       <div>
         <button onClick={onIncrease}> +1 </button> <br />
         <button onClick={onDecrease}> -1 </button> <br />
@@ -22,7 +23,7 @@ const Counter = ({
           value={inputVal}
           onChange={(e) => setInputVal(Number(e.target.value))}
         />
-        <button onClick={() => onInputIncrese(inputVal)}>inputIncrease</button>
+        <button onClick={() => onInputIncrese(inputVal)}>input Increase</button>
       </div>
     </div>
   );
