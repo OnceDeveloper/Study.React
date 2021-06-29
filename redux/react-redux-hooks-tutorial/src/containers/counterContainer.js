@@ -9,7 +9,7 @@ import {
 } from "../modules/counter";
 
 const CounterContainer = () => {
-  const counter = useSelector((state) => state.counter);
+  const counter = useSelector((state) => state.counter.number);
 
   const dispatch = useDispatch();
   const onIncrease = () => dispatch(increment());

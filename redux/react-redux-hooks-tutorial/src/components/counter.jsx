@@ -18,7 +18,7 @@ const Counter = ({
         <button onClick={onDecrease}> -1 </button> <br />
         <button onClick={onReset}> Reset </button> <br />
         <input
-          type="text"
+          type="number"
           value={inputVal}
           onChange={(e) => setInputVal(Number(e.target.value))}
         />

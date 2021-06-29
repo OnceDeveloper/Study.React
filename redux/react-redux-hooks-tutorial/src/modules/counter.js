@@ -13,22 +13,26 @@ const INPUT_INCREMENT = "counter/INPUT_INCREMENT";
 export const increment = createAction(INCREMENT);
 export const decrement = createAction(DECREMENT);
 export const reset = createAction(RESET);
-export const inputIncrement = createAction(INPUT_INCREMENT);
+export const inputIncrement = createAction(
+  INPUT_INCREMENT,
+  (payload) => payload
+);
 
-const initialState = 0;
+const initialState = { number: 0 };
 
 /** reducer */
 const counter = (state = initialState, action) => {
   switch (action.type) {
     case INCREMENT:
-      return state + 1;
+      return { number: state.number + 1 };
     case DECREMENT:
-      return state - 1;
+      const numberResult = state.number - 1;
+      return { number: numberResult < 0 ? 0 : numberResult };
     case RESET:
-      return 0;
+      return { number: 0 };
     case INPUT_INCREMENT:
       //console.log(action); => type : "counter/INPUT_INCREMENT", payload : param값
-      return state + action.payload;
+      return { number: state.number + action.payload };
     default:
       return state;
   }
