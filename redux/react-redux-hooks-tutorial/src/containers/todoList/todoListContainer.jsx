@@ -10,7 +10,7 @@ const TodoListContainer = () => {
   const onChangeInput = (inputVal) => dispatch(changeInput(inputVal));
 
   const onInsert = (input) => dispatch(insert(input));
-  const onToggleCheck = (id) => dispatch(toggleCheck(id)); //todos.id
+  const onToggleCheck = (id) => dispatch(toggleCheck(id)); //todo.id
   const onRemove = (id) => dispatch(remove(id));
   const onChangeVal = (e) => {
     onChangeInput(e.target.value);

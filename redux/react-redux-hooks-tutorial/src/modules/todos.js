@@ -31,7 +31,7 @@ const todos = (state = initialState, action) => {
       return {
         ...state,
         todos: state.todos.concat({
-          //action.payload 안에 id와 text값을 복사하고 'done' 추가해주겠다
+          //action.payload 안의 id와 text값을 복사하고 'done' 추가해주겠다
           ...action.payload,
           done: false,
         }),
