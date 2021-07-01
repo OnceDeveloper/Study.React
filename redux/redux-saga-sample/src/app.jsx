@@ -1,8 +1,10 @@
-import './app.css';
-
+import "./app.css";
+import PostsContainer from "./hooks/postContainer";
 function App() {
   return (
-   <h1> Hello :) </h1>
+    <div>
+      <PostsContainer />
+    </div>
   );
 }
 
