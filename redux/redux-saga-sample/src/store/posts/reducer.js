@@ -38,7 +38,7 @@ const PostReducer = (state = initialState, action) => {
         isLoading: true,
       };
     case ADD_POST_SUCCESS:
-      console.log(action.payload);
+      //console.log(action); => {type:"posts/ADD_...", payload :{id:101, title: '받은title값', body:'받은body값'}}
       return {
         ...state,
         isLoading: false,
