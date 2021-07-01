@@ -1,27 +1,32 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import { getPostsFunc, addPostFunc } from "../store/posts";
 import Posts from "../components/posts/posts";
+import { useEffect } from "react";
 
 const PostsContainer = () => {
+  const { posts } = useSelector((state) => state.posts, shallowEqual);
   const dispatch = useDispatch();
   const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
+  const [body, setBody] = useState("");
 
   const onGetPostsFunc = () => dispatch(getPostsFunc());
-  const onAddPostFunc = () => dispatch(addPostFunc({ title, description }));
+  const onAddPostFunc = () => dispatch(addPostFunc({ title, body }));
 
   const onChangeTitleFunc = (e) => {
     setTitle(e.target.value);
   };
   const onChangeDescripFunc = (e) => {
-    setDescription(e.target.value);
+    setBody(e.target.value);
   };
+
+  //useEffect(onGetPostsFunc, []);
 
   return (
     <Posts
+      posts={posts}
       title={title}
-      description={description}
+      body={body}
       onChangeTitleFunc={onChangeTitleFunc}
       onChangeDescripFunc={onChangeDescripFunc}
       onGetPostsFunc={onGetPostsFunc}

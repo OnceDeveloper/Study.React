@@ -19,18 +19,12 @@ export const getPostsFailedFunc = createAction(
 );
 
 export const addPostFunc = createAction(ADD_POST, (payload) => payload);
-// export const addPostFunc = (title, description) => ({
-//   ADD_POST,
-//   payload: { title: title, description: description },
-// });
 
-// export const addPostSuccessFunc = createAction(ADD_POST_SUCCESS, (payload) => ({
-//   payload: payload
-// });
-export const addPostSuccessFunc = (payload) => ({
-  type: ADD_POST_SUCCESS,
-  payload: payload,
-});
+export const addPostSuccessFunc = createAction(
+  ADD_POST_SUCCESS,
+  (payload) => payload
+);
+
 export const addPostFailedFunc = createAction(
   ADD_POST_FAILED,
   (payload) => payload
