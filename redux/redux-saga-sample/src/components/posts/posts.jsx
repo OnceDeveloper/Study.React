@@ -1,6 +1,8 @@
 import React from "react";
+import Post from "./post";
 
 const Posts = ({
+  posts,
   onChangeTitleFunc,
   onChangeDescripFunc,
   onGetPostsFunc,
@@ -19,6 +21,17 @@ const Posts = ({
         placeholder="description"
       />
       <button onClick={onAddPostFunc}>Add Item</button>
+
+      <ul>
+        {
+          posts.map(post => {
+            return (
+              <Post post={post} key={post.id} />
+            )
+          })
+        }
+
+      </ul>
     </div>
   );
 };
