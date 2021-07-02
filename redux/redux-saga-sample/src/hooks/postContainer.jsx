@@ -11,16 +11,25 @@ const PostsContainer = () => {
   const [body, setBody] = useState("");
 
   const onGetPostsFunc = () => dispatch(getPostsFunc());
-  const onAddPostFunc = () => dispatch(addPostFunc({ title, body }));
-
+  const onAddPostFunc = () => {
+    dispatch(addPostFunc({ title, body }));
+  };
   const onChangeTitleFunc = (e) => {
     setTitle(e.target.value);
   };
-  const onChangeDescripFunc = (e) => {
+  const onChangeBodyFunc = (e) => {
     setBody(e.target.value);
   };
 
-  //useEffect(onGetPostsFunc, []);
+  const onClickAddPost = () => {
+    if (title && body) {
+      setTitle("");
+      setBody("");
+      onAddPostFunc();
+    } else alert("Please fill in the blanks");
+  };
+
+  //useEffect(onGetPostsFunc, [dispatch]);
 
   return (
     <Posts
@@ -28,9 +37,9 @@ const PostsContainer = () => {
       title={title}
       body={body}
       onChangeTitleFunc={onChangeTitleFunc}
-      onChangeDescripFunc={onChangeDescripFunc}
+      onChangeBodyFunc={onChangeBodyFunc}
       onGetPostsFunc={onGetPostsFunc}
-      onAddPostFunc={onAddPostFunc}
+      onClickAddPost={onClickAddPost}
     />
   );
 };
