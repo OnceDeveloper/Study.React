@@ -1,4 +1,3 @@
-import posts from ".";
 import {
   GET_POSTS,
   GET_POSTS_SUCCESS,

@@ -7,6 +7,7 @@ const PostsWrapper = styled.ul`
   li {
     border: 3px solid #7dc0ff;
     margin-top: 20px;
+    margin-right: 5%;
   }
 `;
 const Button = styled.button`
@@ -14,18 +15,19 @@ const Button = styled.button`
   border-radius: 3px;
   border: 2px solid palevioletred;
   color: palevioletred;
-  margin: 0 1em;
+  margin-top: 3%;
+  margin-left: 3%;
   padding: 0.25em 1em;
 `;
 
 const Posts = ({
   posts,
+  title,
+  body,
   onChangeTitleFunc,
   onChangeBodyFunc,
   onGetPostsFunc,
   onClickAddPost,
-  title,
-  body,
 }) => {
   return (
     <div>
