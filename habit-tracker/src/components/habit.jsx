@@ -15,9 +15,6 @@ const Habit = memo((props) => {
         //컴포넌트리시브받을때
         console.log("컴포 리시브 받을 때");
     }
-    function tes() {
-
-    }
 
     const defaultProps = {
         id: 0,
