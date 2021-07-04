@@ -12,21 +12,8 @@ class Youtube {
             `https://www.googleapis.com/youtube/v3/videos?part=snippet&chart=mostPopular&maxResults=25&key=${this.key}`,
             this.getRequestOptions
         )
-            .then(response => {
-                console.log(response.json().then(result => {
-                    debugger;
-                    return result.items;
-                }));
-                return response.json();
-            })
-            //.then(response => console.log(response))
-            //.then(response => console.log("tt"))
-            //.then(response => response.json())
-
-            .then(result => {
-                debugger;
-                return result.items;
-            })
+            .then(response => response.json())
+            .then(result => result.items)
             .catch(error => console.log('error', error));
     }
     async search(keyword) {
