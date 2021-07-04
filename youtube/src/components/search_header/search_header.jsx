@@ -1,7 +1,7 @@
-import React, { useRef } from 'react';
+import React, { memo, useRef } from 'react';
 import styles from './search_header.module.css';
 
-const SearchHeader = ({ onSearch }) => {
+const SearchHeader = memo(({ onSearch }) => {
 
     const keywordRef = useRef();
 
@@ -12,15 +12,12 @@ const SearchHeader = ({ onSearch }) => {
 
     const onClick = (e) => {
         handleSearch();
-
     }
 
     const onKeyPress = (e) => {
         if (e.key === 'Enter')
             handleSearch();
-
     }
-
 
     return (
         <header className={styles.header}>
@@ -42,6 +39,6 @@ const SearchHeader = ({ onSearch }) => {
             </button>
         </header>
     )
-}
+})
 
 export default SearchHeader;

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import SearchHeader from './components/search_header/search_header';
 import VideoList from './components/video_list/video_list';
 import styles from './app.module.css';
@@ -12,13 +12,14 @@ function App({ youtube }) {
     youtube
       .mostPopular()
       .then(videos => setVideos(videos));
-  }, []);
+  }, [youtube]);
 
-  const onSearch = (keyword) => {
+  const onSearch = useCallback((keyword) => {
+    setSelectedVideo(null);
     youtube
       .search(keyword)
       .then(videos => setVideos(videos));
-  }
+  }, []);
 
   const onClickVideo = (video) => {
     setSelectedVideo(video);
