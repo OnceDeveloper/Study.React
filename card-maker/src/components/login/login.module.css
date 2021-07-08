@@ -1,0 +1,57 @@
+@value makerGreen from '../../common/colors.css';
+@value makerWhite from '../../common/colors.css';
+@value mediaQuery from '../../common/size.css';
+
+
+.loginContainer{
+    position: fixed;
+    left: 37%;
+    top: 25%;
+    display: grid;
+    width: 400px;
+    height: 100px;
+    text-align: center;
+    /* margin : 20px 300px 20px 300px; 
+    padding : 20px 20px 20px 20px; */
+}
+
+.headerBox{
+    color: makerWhite;
+    background-color: makerGreen;
+    /* margin: 0 auto; */
+}
+
+.headerTitle{
+    padding-bottom: 10px;
+    margin-top: 10px;
+    font-size : 20px;
+    font-weight: bold;
+}
+img{
+    padding-top : 20px;
+    width: 50px;
+}
+
+.loginArea{
+    background-color: makerWhite;
+    padding: 10px 0 10px 0;
+}
+.loginTitle{
+    margin : 10px 0 10px 0;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.loginButton{
+    background-color: transparent;
+    padding: 10px 100px 10px 100px;
+    margin : 10px 0 10px 0px;
+    border-radius: 12px;
+}
+.footerTitle{
+    padding-bottom: 10px;
+    margin-top: 10px;
+    font-size : 10px;
+}
+
+
