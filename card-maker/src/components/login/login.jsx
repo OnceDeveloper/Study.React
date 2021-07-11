@@ -3,6 +3,7 @@ import LoginFooter from './loginFooter';
 import LoginHeader from './loginHeader';
 import styles from './login.module.css';
 import * as fire from '../../utils/firebase/firebase';
+import * as fireGoogle from '../../utils/firebase/googleSignIn';
 import firebase from 'firebase';
 const Login = (props) => {
     // const onLoginGoogleApi = () => {
@@ -17,10 +18,9 @@ const Login = (props) => {
         //firebase.auth().signInWithRedirect(fire.provider);
     }, []);
     const googleLogin = () => {
-        // debugger
-        // const provider = fire.googleProvider();
-        // firebase.auth().signInWithRedirect(provider);
-        // firebase.auth().getRedirectResult();
+
+        const provider = fireGoogle.googleProvider();
+        fireGoogle.googleSignInPopup(provider);
     }
 
     return (
