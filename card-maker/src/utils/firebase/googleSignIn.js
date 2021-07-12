@@ -21,9 +21,9 @@ export function googleSignInPopup(provider) {
         .signInWithPopup(provider)
         .then((result) => {
             /** @type {firebase.auth.OAuthCredential} */
-            let credential = result.credential;
-            let token = credential.accessToken;
-            let user = result.user;
+            // let credential = result.credential;
+            // let token = credential.accessToken;
+            // let user = result.user;
             return result;
         }).catch((error) => {
             let errorCode = error.code;
@@ -46,7 +46,6 @@ export function googleSignInRedirectResult() {
             }
             // The signed-in user info.
             let user = result.user;
-            debugger
             return result;
         }).catch((error) => {
             // Handle Errors here.
@@ -109,7 +108,6 @@ export function isUserEqual(googleUser, firebaseUser) {
         for (let i = 0; i < providerData.length; i++) {
             if (providerData[i].providerId === firebase.auth.GoogleAuthProvider.PROVIDER_ID &&
                 providerData[i].uid === googleUser.getBasicProfile().getId()) {
-                // We don't need to reauth the Firebase connection.
                 return true;
             }
         }

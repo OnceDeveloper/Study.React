@@ -2,25 +2,38 @@ import React, { useEffect, useState } from 'react';
 import LoginFooter from './loginFooter';
 import LoginHeader from './loginHeader';
 import styles from './login.module.css';
-import * as fire from '../../utils/firebase/firebase';
 import * as fireGoogle from '../../utils/firebase/googleSignIn';
+import * as fireGithub from '../../utils/firebase/githubSignin';
 import firebase from 'firebase';
-const Login = (props) => {
-    // const onLoginGoogleApi = () => {
-    //     fire.signInWithGoogle
-    // }
-    const [curUser, setCurUser] = useState();
-    useEffect(() => {
-        // fire.auth.onAuthStateChanged(user => {
-        //     setCurUser(user)
-        // });
-        // console.log(curUser);
-        //firebase.auth().signInWithRedirect(fire.provider);
-    }, []);
-    const googleLogin = () => {
+import * as fire from '../../utils/firebase/firebase';
 
+import { useHistory } from 'react-router-dom';
+
+const Login = () => {
+    const [curUser, setCurUser] = useState();
+    const [curUserEmail, setCurUserEmail] = useState();
+    const [curUserName, setCuerUserName] = useState();
+    const history = useHistory();
+
+    const googleLogin = () => {
+        debugger;
         const provider = fireGoogle.googleProvider();
         fireGoogle.googleSignInPopup(provider);
+        firebase.auth().onAuthStateChanged((firebaseUser) => {
+            if (firebaseUser !== null) {
+                setCurUserEmail(firebaseUser.email);
+                setCuerUserName(firebaseUser.displayName);
+                setCurUser(firebaseUser);
+                history.push('/cardList');
+            } else {
+                alert("google login Fail!!");
+            }
+        });
+    }
+    const githubLogin = () => {
+        const provider = fireGithub.githubProvider();
+        fireGithub.githubSignInPopup(provider);
+
     }
 
     return (
@@ -29,15 +42,24 @@ const Login = (props) => {
             <div className={styles.loginArea}>
                 <div className={styles.loginTitle}> Login </div>
                 <button className={styles.loginButton} onClick={googleLogin} >
-                    {/* onClick={fire.signInWithGoogle} */}
                     Google
                 </button>
-                <button className={styles.loginButton}>
+                <button onClick={() => {
+                    firebase.auth().signOut().then(() => {
+                        alert("logOut");
+                        setCurUserEmail('');
+                    }).catch((error) => {
+                        alert(error);
+                    });
+                }}>
+                    logout
+                </button>
+                <button className={styles.loginButton} onClick={githubLogin} >
                     GitHub
                 </button>
             </div>
             <LoginFooter />
-        </div>
+        </div >
     );
 };
 
