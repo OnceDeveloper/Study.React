@@ -16,7 +16,6 @@ const Login = () => {
     const history = useHistory();
 
     const googleLogin = () => {
-        debugger;
         const provider = fireGoogle.googleProvider();
         fireGoogle.googleSignInPopup(provider);
         firebase.auth().onAuthStateChanged((firebaseUser) => {
@@ -26,7 +25,7 @@ const Login = () => {
                 setCurUser(firebaseUser);
                 history.push('/cardList');
             } else {
-                alert("google login Fail!!");
+                //alert("google login Fail!!");
             }
         });
     }
