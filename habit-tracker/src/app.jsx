@@ -11,7 +11,8 @@ class App extends Component {
       { id: 1, name: 'Reading', count: 0 },
       { id: 2, name: 'Running', count: 0 },
       { id: 3, name: 'Coding', count: 0 }
-    ]
+    ],
+    keyword: ''
   }
   handleIncrement = (habit) => {
     const copyHabits = this.state.habits.map(item => {
@@ -63,14 +64,13 @@ class App extends Component {
   }
 
   handleFilter = (name) => {
-
-    const filterHabits = this.state.habits.filter(item => {
-      return item.name.toLowerCase().includes(name)
-
-    }
-    )
+    // const filterHabits = this.state.habits.filter(item => {
+    //   return item.name.toLowerCase().includes(name)
+    // })
+    this.setState({ keyword: name })
+    const filterHabits = this.state.habits.filter(habit => habit.name.indexOf(name) > -1)
     this.setState({
-      habits: filterHabits
+      filteredHabits: filterHabits,
     })
   }
 
@@ -86,6 +86,7 @@ class App extends Component {
           onAdd={this.handleAdd}
           onReset={this.handleReset}
           onFilter={this.handleFilter}
+          keyword={this.keyword}
         />
       </Fragment>
     )

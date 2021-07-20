@@ -25,13 +25,15 @@ class Habits extends Component {
     handleFilter = (name) => {
         this.props.onFilter(name);
     }
-
+    componentDidMount() {
+        console.log("해빗츠!!");
+    }
 
     render() {
         return (
             <>
                 <HabitAddForm onAdd={this.handleAdd} />
-                <HabitFilter onFilter={this.handleFilter} />
+                <HabitFilter onFilter={this.handleFilter} keyword={this.props.keyword} />
                 <ul>
                     {
                         this.props.habits.map((habit, index) => {

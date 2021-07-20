@@ -11,6 +11,9 @@ class HabitFilter extends Component {
         //name && this.props.onFilter(name);
 
     }
+    shouldComponentUpdate(nextProps, nextState) {
+        return nextProps.keyword !== this.props.keyword;
+    }
 
     render() {
         return (
@@ -21,6 +24,7 @@ class HabitFilter extends Component {
                     className="add-input"
                     placeholder="Filtering"
                     onChange={this.onFilter}
+                    value={this.props.keyword}
                 />
                 <button className="add-button">Filter</button>
 
