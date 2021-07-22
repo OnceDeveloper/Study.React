@@ -22,20 +22,30 @@ class Habits extends Component {
     handleAdd = (name) => {
         this.props.onAdd(name);
     }
-    handleFilter = (name) => {
-        this.props.onFilter(name);
-    }
-    componentDidMount() {
-        console.log("해빗츠!!");
-    }
 
+    handleSetKeyword = (keyword) => {
+        this.props.onSetKeyword(keyword);
+    }
     render() {
         return (
             <>
                 <HabitAddForm onAdd={this.handleAdd} />
-                <HabitFilter onFilter={this.handleFilter} keyword={this.props.keyword} />
+                <HabitFilter onSetKeyword={this.handleSetKeyword}
+                    keyword={this.props.keyword} />
                 <ul>
-                    {
+                    {this.props.keyword.length > 0 ?
+                        this.props.filteredHabits.map((habit, index) => {
+                            return (
+                                <Habit
+                                    key={habit.id}
+                                    habit={habit}
+                                    onIncrement={this.handleIncrement}
+                                    onDecrement={this.handleDecrement}
+                                    onDelete={this.handleDelete}
+                                />
+                            )
+                        })
+                        :
                         this.props.habits.map((habit, index) => {
                             return (
                                 <Habit

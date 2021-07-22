@@ -12,6 +12,7 @@ class App extends Component {
       { id: 2, name: 'Running', count: 0 },
       { id: 3, name: 'Coding', count: 0 }
     ],
+    filteredHabits: [],
     keyword: ''
   }
   handleIncrement = (habit) => {
@@ -62,16 +63,29 @@ class App extends Component {
       habits
     })
   }
+  componentDidUpdate(prevProps, prevState) {
 
-  handleFilter = (name) => {
-    // const filterHabits = this.state.habits.filter(item => {
-    //   return item.name.toLowerCase().includes(name)
-    // })
-    this.setState({ keyword: name })
-    const filterHabits = this.state.habits.filter(habit => habit.name.indexOf(name) > -1)
-    this.setState({
-      filteredHabits: filterHabits,
-    })
+    if (prevState.keyword !== this.state.keyword) {
+
+      const filteredHabits = this.state.habits.reduce((previousValue, data, index) => {
+        try {
+          if (data.name.includes(this.state.keyword)) {
+            previousValue.push({ ...data });
+          }
+        } catch (e) {
+        } finally {
+          return previousValue;
+        }
+      }, [])
+      this.setState({
+        ...this.state,
+        filteredHabits: filteredHabits,
+      })
+    }
+  }
+
+  handleSetKeyword = (keyword) => {
+    this.setState({ keyword: keyword })
   }
 
   render() {
@@ -80,13 +94,15 @@ class App extends Component {
         <Navbar totalCount={this.state.habits.filter(item => item.count > 0).length} />
         <Habits
           habits={this.state.habits}
+          filteredHabits={this.state.filteredHabits}
           onIncrement={this.handleIncrement}
           onDecrement={this.handleDecrement}
           onDelete={this.handleDelete}
           onAdd={this.handleAdd}
           onReset={this.handleReset}
+          onSetKeyword={this.handleSetKeyword}
           onFilter={this.handleFilter}
-          keyword={this.keyword}
+          keyword={this.state.keyword}
         />
       </Fragment>
     )

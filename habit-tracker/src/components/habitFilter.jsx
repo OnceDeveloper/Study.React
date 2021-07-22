@@ -3,13 +3,10 @@ import React, { Component } from 'react';
 class HabitFilter extends Component {
     inputRef = React.createRef();
 
-    onFilter = (e) => {
+    handleSetKeyword = (e) => {
         e.preventDefault();
-        const name = e.target.value.toLowerCase();
-        name && this.props.onFilter(name);
-        // const name = this.inputRef.current.value;
-        //name && this.props.onFilter(name);
-
+        const keyword = e.target.value;
+        this.props.onSetKeyword(keyword);
     }
     shouldComponentUpdate(nextProps, nextState) {
         return nextProps.keyword !== this.props.keyword;
@@ -23,12 +20,12 @@ class HabitFilter extends Component {
                     type="text"
                     className="add-input"
                     placeholder="Filtering"
-                    onChange={this.onFilter}
+                    onChange={this.handleSetKeyword}
                     value={this.props.keyword}
                 />
-                <button className="add-button">Filter</button>
+                <button onClick={(e) => e.preventDefault()} className="add-button">Filter</button>
 
-            </form>
+            </form >
         );
     }
 }
