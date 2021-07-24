@@ -16,6 +16,7 @@ class App extends Component {
     keyword: ''
   }
   handleIncrement = (habit) => {
+
     const copyHabits = this.state.habits.map(item => {
       if (item.id === habit.id) {
         return { ...habit, count: habit.count + 1 }
@@ -23,8 +24,21 @@ class App extends Component {
       return item;
     })
     this.setState({
-      habits: copyHabits
+      habits: copyHabits,
     })
+
+    if (this.state.filteredHabits.length !== 0 &&
+      this.state.filteredHabits.length !== copyHabits.length) {
+      const copyFilteredHabits = this.state.filteredHabits.map(item => {
+        if (item.id === habit.id) {
+          return { ...habit, count: habit.count + 1 }
+        }
+        return item;
+      })
+      this.setState({
+        filteredHabits: copyFilteredHabits
+      })
+    }
   }
 
   handleDecrement = (habit) => {
@@ -38,6 +52,19 @@ class App extends Component {
     this.setState({
       habits: copyHabits
     })
+    if (this.state.filteredHabits.length !== 0 &&
+      this.state.filteredHabits.length !== copyHabits.length) {
+      const copyFilteredHabits = this.state.filteredHabits.map(item => {
+        if (item.id === habit.id) {
+          const count = habit.count - 1;
+          return { ...habit, count: count < 0 ? 0 : count };
+        }
+        return item;
+      })
+      this.setState({
+        filteredHabits: copyFilteredHabits
+      })
+    }
   }
 
   handleDelete = (habit) => {
@@ -65,12 +92,13 @@ class App extends Component {
   }
   componentDidUpdate(prevProps, prevState) {
     const lowKeyword = this.state.keyword.toLowerCase()
+    let lowName = "";
 
     if (prevState.keyword !== this.state.keyword) {
 
       const filteredHabits = this.state.habits.reduce((previousValue, data, index) => {
         try {
-          const lowName = data.name.toLowerCase();
+          lowName = data.name.toLowerCase();
           if (lowName.includes(lowKeyword)) {
             previousValue.push({ ...data });
           }
