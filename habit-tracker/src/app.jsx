@@ -64,12 +64,14 @@ class App extends Component {
     })
   }
   componentDidUpdate(prevProps, prevState) {
+    const lowKeyword = this.state.keyword.toLowerCase()
 
     if (prevState.keyword !== this.state.keyword) {
 
       const filteredHabits = this.state.habits.reduce((previousValue, data, index) => {
         try {
-          if (data.name.includes(this.state.keyword)) {
+          const lowName = data.name.toLowerCase();
+          if (lowName.includes(lowKeyword)) {
             previousValue.push({ ...data });
           }
         } catch (e) {
