@@ -15,6 +15,29 @@ class App extends Component {
     filteredHabits: [],
     keyword: ''
   }
+  componentDidMount() {
+    this.setState({
+      ...this.state, filteredHabits: this.state.habits
+    })
+  }
+  componentDidUpdate(prevProps, prevState) {
+    const lowKeyword = this.state.keyword.toLowerCase()
+
+    if (prevState.keyword !== this.state.keyword) {
+      const filteredHabits = this.state.habits.filter((habit) => habit.name.toLowerCase().includes(lowKeyword));
+      this.setState({
+        ...this.state,
+        filteredHabits: filteredHabits,
+      })
+    }
+    if (prevState.habits !== this.state.habits) {
+      // const modifiedHabit = this.state.habits.filter(habit => !prevState.habits.includes(habit));
+      this.setState({
+        ...this.state,
+        filteredHabits: this.state.habits
+      });
+    }
+  }
   handleIncrement = (habit) => {
 
     const copyHabits = this.state.habits.map(item => {
@@ -26,19 +49,6 @@ class App extends Component {
     this.setState({
       habits: copyHabits,
     })
-
-    if (this.state.filteredHabits.length !== 0 &&
-      this.state.filteredHabits.length !== copyHabits.length) {
-      const copyFilteredHabits = this.state.filteredHabits.map(item => {
-        if (item.id === habit.id) {
-          return { ...habit, count: habit.count + 1 }
-        }
-        return item;
-      })
-      this.setState({
-        filteredHabits: copyFilteredHabits
-      })
-    }
   }
 
   handleDecrement = (habit) => {
@@ -52,19 +62,6 @@ class App extends Component {
     this.setState({
       habits: copyHabits
     })
-    if (this.state.filteredHabits.length !== 0 &&
-      this.state.filteredHabits.length !== copyHabits.length) {
-      const copyFilteredHabits = this.state.filteredHabits.map(item => {
-        if (item.id === habit.id) {
-          const count = habit.count - 1;
-          return { ...habit, count: count < 0 ? 0 : count };
-        }
-        return item;
-      })
-      this.setState({
-        filteredHabits: copyFilteredHabits
-      })
-    }
   }
 
   handleDelete = (habit) => {
@@ -90,29 +87,7 @@ class App extends Component {
       habits
     })
   }
-  componentDidUpdate(prevProps, prevState) {
-    const lowKeyword = this.state.keyword.toLowerCase()
-    let lowName = "";
 
-    if (prevState.keyword !== this.state.keyword) {
-
-      const filteredHabits = this.state.habits.reduce((previousValue, data, index) => {
-        try {
-          lowName = data.name.toLowerCase();
-          if (lowName.includes(lowKeyword)) {
-            previousValue.push({ ...data });
-          }
-        } catch (e) {
-        } finally {
-          return previousValue;
-        }
-      }, [])
-      this.setState({
-        ...this.state,
-        filteredHabits: filteredHabits,
-      })
-    }
-  }
 
   handleSetKeyword = (keyword) => {
     this.setState({ keyword: keyword })

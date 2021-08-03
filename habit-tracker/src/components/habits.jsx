@@ -33,7 +33,19 @@ class Habits extends Component {
                 <HabitFilter onSetKeyword={this.handleSetKeyword}
                     keyword={this.props.keyword} />
                 <ul>
-                    {this.props.keyword.length > 0 ?
+                    {this.props.filteredHabits.map((habit, index) => {
+                        return (
+                            <Habit
+                                key={habit.id}
+                                habit={habit}
+                                onIncrement={this.handleIncrement}
+                                onDecrement={this.handleDecrement}
+                                onDelete={this.handleDelete}
+                            />
+                        )
+                    })
+                    }
+                    {/* {this.props.keyword.length > 0 ?
                         this.props.filteredHabits.map((habit, index) => {
                             return (
                                 <Habit
@@ -57,7 +69,7 @@ class Habits extends Component {
                                 />
                             )
                         })
-                    }
+                    } */}
                 </ul>
                 <button className="habits-reset" onClick={this.props.onReset}>Reset All</button>
             </>
