@@ -4,18 +4,14 @@
 
 
 .loginContainer{
-    position: fixed;
-    left: 37%;
-    top: 25%;
-    display: grid;
+    display: flex;
+    flex-direction: column;
     width: 400px;
-    height: 100px;
     text-align: center;
-    /* margin : 20px 300px 20px 300px; 
-    padding : 20px 20px 20px 20px; */
 }
 
 .headerBox{
+    width: 100%;
     color: makerWhite;
     background-color: makerGreen;
     /* margin: 0 auto; */
@@ -33,6 +29,7 @@ img{
 }
 
 .loginArea{
+    width: 100%;
     background-color: makerWhite;
     padding: 10px 0 10px 0;
 }

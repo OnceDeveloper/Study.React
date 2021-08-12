@@ -1,5 +1,5 @@
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import './app.css';
+import styles from './app.module.css';
 import CardList from './components/card/cardList';
 import Login from './components/login/login';
 
@@ -7,7 +7,7 @@ function App() {
 
 
   return (
-    <>
+    <div className={styles.app}>
       <BrowserRouter>
         <Switch>
           <Route path={['/', '/login']} exact>
@@ -18,7 +18,7 @@ function App() {
           </Route>
         </Switch>
       </BrowserRouter>
-    </>
+    </div>
   );
 }
 

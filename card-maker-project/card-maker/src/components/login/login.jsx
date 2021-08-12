@@ -36,14 +36,14 @@ const Login = () => {
     }
 
     return (
-        <div className={styles.loginContainer}>
+        <section className={styles.loginContainer}>
             <LoginHeader />
-            <div className={styles.loginArea}>
-                <div className={styles.loginTitle}> Login </div>
+            <section className={styles.loginArea}>
+                <h1> Login </h1>
                 <button className={styles.loginButton} onClick={googleLogin} >
                     Google
                 </button>
-                <button onClick={() => {
+                {/* <button onClick={() => {
                     firebase.auth().signOut().then(() => {
                         alert("logOut");
                         setCurUserEmail('');
@@ -52,13 +52,13 @@ const Login = () => {
                     });
                 }}>
                     logout
-                </button>
+                </button> */}
                 <button className={styles.loginButton} onClick={githubLogin} >
                     GitHub
                 </button>
-            </div>
+            </section>
             <LoginFooter />
-        </div >
+        </section >
     );
 };
 
